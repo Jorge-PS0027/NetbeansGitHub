@@ -1,5 +1,5 @@
 
-import java.util.Random;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /*
@@ -8,33 +8,62 @@ import java.util.Scanner;
  */
 /**
  *
- * @author jorge.pensan
+ * @author jorge
  */
 public class ejercicio5_5 {
 
     static int[] rellenaPares(int longitud, int fin) {
-        Random random = new Random();
-        int num=0;
+
+        int num = 0;
         int Pares[] = new int[longitud];
         for (int i = 0; i < Pares.length; i++) {
-            int aleatorio = 2 + random.nextInt(fin);
-            if (aleatorio % 2 ==0){
-                Pares[i] = aleatorio;
-            }
+            int aleatorio = 0;
+            do {
+                aleatorio = (int) ((Math.random() * fin) + 2);
+            } while (aleatorio % 2 != 0);
+
+            Pares[i] = aleatorio;
+
         }
         return Pares;
     }
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int l = 0, f = 0;
-        System.out.println("dime el numero de elementos que habra en la tabla");
-        l = sc.nextInt();
-        System.out.println("Dime que elemento sera el ultimo");
-        f = sc.nextInt();
-        int par[] = rellenaPares(l, f);
-        for (int pares : par){
-        System.out.println(pares);
+        int lon = 0, fn = 0;
+        boolean error1 = false, error2 = false;
+        while (!error1) {
+            try {
+
+                System.out.println("dime el numero de elementos que habra en la tabla");
+                lon = sc.nextInt();
+                if (lon <= 0) {
+                    System.out.println("Error: el numero debe ser positivo");
+                } else {
+                    error1 = true;
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Error: el numero debe ser un numero entero");
+                sc.nextLine();
+            }
+        }
+        while (!error2) {
+            try {
+                System.out.println("Dime que elemento sera el ultimo");
+                fn = sc.nextInt();
+                if (fn <= 0) {
+                    System.out.println("Error: el numero debe ser positivo");
+                } else {
+                    error2 = true;
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Error: el numero debe ser un numero entero");
+                sc.nextLine();
+            }
+        }
+        int par[] = rellenaPares(lon, fn);
+        for (int pares : par) {
+            System.out.println(pares);
         }
     }
 }
