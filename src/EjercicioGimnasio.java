@@ -1,6 +1,6 @@
 
 import java.util.*;
-
+//comentario para hacer el merge
 public class EjercicioGimnasio {
 
     // Colecciones ya preparadas
