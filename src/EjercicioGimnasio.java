@@ -1,6 +1,6 @@
 
 import java.util.*;
-
+// comentario para generar un conflicto
 public class EjercicioGimnasio {
 
     // Colecciones ya preparadas
